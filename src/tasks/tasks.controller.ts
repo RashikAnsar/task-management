@@ -36,8 +36,8 @@ export class TasksController {
     //     return this.taskService.updateTaskStatus(id, status);
     // }
 
-    // @Delete('/:id')
-    // deleteTaskByID(@Param('id') id: string) {
-    //     this.taskService.deleteTask(id);
-    // }
+    @Delete('/:id')
+    deleteTaskByID(@Param('id', ParseIntPipe) id: number): Promise<void> {
+        return this.taskService.deleteTask(id);
+    }
 }
