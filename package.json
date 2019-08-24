@@ -29,6 +29,7 @@
     "reflect-metadata": "^0.1.12",
     "rimraf": "^2.6.2",
     "rxjs": "^6.3.3",
+    "bcrypt": "^3.0.6",
     "typeorm": "^0.2.18"
   },
   "devDependencies": {
