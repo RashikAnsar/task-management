@@ -23,8 +23,8 @@ export class TasksService {
      * Return the tuple from Database based on ID
      * @param id ID of the task
      */
-    async getTaskById(id: number): Promise<Task> {
-        const result = await this.taskRepository.findOne(id);
+    async getTaskById(id: number, user: User): Promise<Task> {
+        const result = await this.taskRepository.findOne({ where: { id, userId: user.id } });
         if (!result) {
             throw new NotFoundException(`Task with id: "${id}" not found`);
         }
@@ -45,12 +45,12 @@ export class TasksService {
      * @param id id in the database
      * @param status TaskStatus to update
      */
-    async updateTaskStatus(id: number, status: TaskStatus): Promise<Task> {
-        const task = await this.getTaskById(id);
-        task.status = status;
-        await task.save();
-        return task;
-    }
+    // async updateTaskStatus(id: number, status: TaskStatus): Promise<Task> {
+    //     const task = await this.getTaskById(id);
+    //     task.status = status;
+    //     await task.save();
+    //     return task;
+    // }
 
     async deleteTask(id: number): Promise<void> {
         const result = await this.taskRepository.delete(id);
